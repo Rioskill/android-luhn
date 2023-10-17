@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -48,31 +49,37 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
+        Log.d("RRR","onCreate()")
 
     }
 
     override fun onStart() {
         super.onStart()
+        Log.d("RRR","onStart()")
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.d("RRR","onDestroy()")
     }
 
     override fun onPause() {
         super.onPause()
+        Log.d("RRR","onPause()")
     }
 
     override fun onRestart() {
         super.onRestart()
+        Log.d("RRR","onRestart()")
     }
 
     override fun onStop() {
         super.onStop()
+        Log.d("RRR","onStop()")
     }
 
     override fun onResume() {
         super.onResume()
+        Log.d("RRR","onResume()")
     }
 }
