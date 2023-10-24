@@ -11,8 +11,6 @@ import java.lang.Math.sqrt
 class MainActivity : AppCompatActivity() {
 
     private lateinit var editA: EditText
-    private lateinit var editB: EditText
-    private lateinit var editC: EditText
     private lateinit var btn: Button
     private lateinit var res: TextView
 
@@ -20,32 +18,35 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         editA = findViewById(R.id.editTextA)
-        editB = findViewById(R.id.editTextB)
-        editC = findViewById(R.id.editTextC)
-        btn = findViewById(R.id.button)
         res = findViewById(R.id.textView)
+        btn = findViewById(R.id.button)
 
         btn.setOnClickListener {
-            val a = editA.text.toString().toDouble()
-            val b = editB.text.toString().toDouble()
-            val c = editC.text.toString().toDouble()
+            val s = editA.text.toString()
 
-            val d = b*b - 4*a*c
-            when {
-                d == 0.0 -> {
-                    val x = -b/(2*a)
-                    res.text = getString(R.string.x, x.toString())
+            val numbers = res.filter{it.isDigit()}
+
+            var sum = 0
+
+            for (i in numbers.indices.reversed()) {
+                var digit = numbers[i].toString().toInt()
+
+                if (digit % 2 == 0) {
+                    digit *= 2
+
+                    if (digit > 9) {
+                        digit -= 9
+                    }
                 }
-                d < 0 -> {
-                    res.text = getString(R.string.not_solve)
-                }
-                else -> {
-                    val x1 = -b + sqrt(d)/(2*a)
-                    val x2 = -b - sqrt(d)/(2*a)
-                    res.text = getString(R.string.x1_x2,x1.toString(), x2.toString())
-                }
+
+                sum += digit;
             }
 
+            if (sum % 10 == 0) {
+                res.text = "OK"
+            } else {
+                res.text = "Error"
+            }
         }
 
 
